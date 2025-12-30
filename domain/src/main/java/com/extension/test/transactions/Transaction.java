@@ -1,15 +1,13 @@
 package com.extension.test.transactions;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "transactions")
 public class Transaction {
@@ -43,43 +41,4 @@ public class Transaction {
 
   @Column(name = "failure_reason")
   private String failureReason;
-
-  protected Transaction() {
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public TransactionType getTransactionType() {
-    return transactionType;
-  }
-
-  public TransactionStatusType getStatusType() {
-    return statusType;
-  }
-
-  public Long getFromAccountId() {
-    return fromAccountId;
-  }
-
-  public Long getToAccountId() {
-    return toAccountId;
-  }
-
-  public long getAmount() {
-    return amount;
-  }
-
-  public long getFee() {
-    return fee;
-  }
-
-  public LocalDateTime getOccurredAt() {
-    return occurredAt;
-  }
-
-  public String getFailureReason() {
-    return failureReason;
-  }
 }

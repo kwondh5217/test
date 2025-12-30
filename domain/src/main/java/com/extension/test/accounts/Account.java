@@ -1,15 +1,13 @@
 package com.extension.test.accounts;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "accounts")
 public class Account {
@@ -40,9 +38,6 @@ public class Account {
   @Column(name = "deleted_at")
   private LocalDateTime deletedAt;
 
-  protected Account() {
-  }
-
   public Account(String accountNumber) {
     this.accountNumber = accountNumber;
     this.statusType = AccountStatusType.ACTIVE;
@@ -51,38 +46,4 @@ public class Account {
     this.createdAt = LocalDateTime.now();
     this.updatedAt = this.createdAt;
   }
-
-  public Long getId() {
-    return id;
-  }
-
-  public String getAccountNumber() {
-    return accountNumber;
-  }
-
-  public AccountStatusType getStatusType() {
-    return statusType;
-  }
-
-  public long getBalance() {
-    return balance;
-  }
-
-  public boolean isDeleted() {
-    return deleted;
-  }
-
-  public LocalDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-  public LocalDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public LocalDateTime getDeletedAt() {
-    return deletedAt;
-  }
-
-
 }
