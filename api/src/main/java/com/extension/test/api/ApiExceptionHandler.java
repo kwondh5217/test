@@ -2,6 +2,7 @@ package com.extension.test.api;
 
 import com.extension.test.api.ApiResponse.FieldError;
 import com.extension.test.exception.AccountNotFoundException;
+import com.extension.test.exception.DailyWithdrawLimitExceededException;
 import com.extension.test.exception.DuplicateAccountNumberException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,4 +51,14 @@ public class ApiExceptionHandler {
         ErrorCode.ACCOUNT_NOT_FOUND.defaultMessage()
     );
   }
+
+  @ExceptionHandler(DailyWithdrawLimitExceededException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ApiResponse<Void> dailyLimitExceeded(DailyWithdrawLimitExceededException e) {
+    return ApiResponse.fail(
+        ErrorCode.DAILY_WITHDRAW_LIMIT_EXCEEDED.code(),
+        ErrorCode.DAILY_WITHDRAW_LIMIT_EXCEEDED.defaultMessage()
+    );
+  }
+
 }
