@@ -63,4 +63,17 @@ public class Transaction {
     tx.occurredAt = LocalDateTime.now();
     return tx;
   }
+
+  public static Transaction transferSuccess(Long fromAccountId, Long toAccountId, long amount, long fee) {
+    Transaction tx = new Transaction();
+    tx.transactionType = TransactionType.TRANSFER;
+    tx.status = TransactionStatusType.SUCCESS;
+    tx.fromAccountId = fromAccountId;
+    tx.toAccountId = toAccountId;
+    tx.amount = amount;
+    tx.fee = fee;
+    tx.occurredAt = LocalDateTime.now();
+    return tx;
+  }
+
 }
