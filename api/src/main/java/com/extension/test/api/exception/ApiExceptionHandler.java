@@ -1,6 +1,7 @@
-package com.extension.test.api;
+package com.extension.test.api.exception;
 
-import com.extension.test.api.ApiResponse.FieldError;
+import com.extension.test.api.dto.ApiResponse;
+import com.extension.test.api.dto.ApiResponse.FieldError;
 import com.extension.test.exception.AccountNotFoundException;
 import com.extension.test.exception.DailyWithdrawLimitExceededException;
 import com.extension.test.exception.DuplicateAccountNumberException;

@@ -2,6 +2,9 @@ package com.extension.test.api;
 
 import com.extension.test.accounts.Account;
 import com.extension.test.accounts.AccountService;
+import com.extension.test.api.dto.ApiResponse;
+import com.extension.test.api.dto.CreateAccountRequest;
+import com.extension.test.api.dto.CreateAccountResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
@@ -22,17 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
   private final AccountService accountService;
-
-  record CreateAccountRequest(@NotBlank String accountNumber) {
-
-  }
-
-  record CreateAccountResponse(Long id, String accountNumber) {
-
-    static CreateAccountResponse from(Account a) {
-      return new CreateAccountResponse(a.getId(), a.getAccountNumber());
-    }
-  }
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)

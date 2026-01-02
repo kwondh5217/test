@@ -1,4 +1,4 @@
-package com.extension.test.api;
+package com.extension.test.api.exception;
 
 public enum ErrorCode {
   DUPLICATE_ACCOUNT_NUMBER("DUPLICATE_ACCOUNT_NUMBER", "이미 존재하는 계좌번호입니다."),

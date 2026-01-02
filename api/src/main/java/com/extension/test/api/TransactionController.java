@@ -1,5 +1,10 @@
 package com.extension.test.api;
 
+import com.extension.test.api.dto.ApiResponse;
+import com.extension.test.api.dto.DepositRequest;
+import com.extension.test.api.dto.DepositResponse;
+import com.extension.test.api.dto.WithdrawRequest;
+import com.extension.test.api.dto.WithdrawResponse;
 import com.extension.test.transactions.TransactionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +18,6 @@ import org.springframework.web.bind.annotation.*;
 public class TransactionController {
 
     private final TransactionService transactionService;
-
-    record DepositRequest(long amount) {}
-    record DepositResponse(Long transactionId) {}
-    record WithdrawRequest(long amount) {}
-    record WithdrawResponse(Long transactionId) {}
 
     @PostMapping("/{accountNumber}/deposit")
     public ResponseEntity<ApiResponse<DepositResponse>> deposit(

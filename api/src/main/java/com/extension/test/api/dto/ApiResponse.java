@@ -1,4 +1,4 @@
-package com.extension.test.api;
+package com.extension.test.api.dto;
 
 import java.util.List;
 
