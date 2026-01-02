@@ -1,5 +1,7 @@
 package com.extension.test.api.dto;
 
-public record WithdrawRequest(long amount) {
+import jakarta.validation.constraints.Min;
+
+public record WithdrawRequest(@Min(1) long amount) {
 
 }

@@ -1,5 +1,7 @@
 package com.extension.test.api.dto;
 
-public record DepositRequest(long amount) {
+import jakarta.validation.constraints.Min;
+
+public record DepositRequest(@Min(1) long amount) {
 
 }
