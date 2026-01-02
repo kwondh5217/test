@@ -3,3 +3,6 @@ spring:
     url: jdbc:mysql://mysql:3306/test
     username: app
     password: app
+
+  jpa:
+    open-in-view: false
