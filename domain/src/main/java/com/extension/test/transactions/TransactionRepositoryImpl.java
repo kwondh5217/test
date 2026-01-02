@@ -1,7 +1,11 @@
 package com.extension.test.transactions;
 
+import static com.querydsl.core.types.Projections.constructor;
+
+import com.extension.test.transactions.dto.TransactionHistoryView;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -44,5 +48,32 @@ public class TransactionRepositoryImpl implements TransactionRepositoryCustom {
         .fetchOne();
 
     return sum == null ? 0L : sum;
+  }
+
+  @Override
+  public List<TransactionHistoryView> findHistoriesByAccountId(Long accountId, int limit, int offset) {
+    QTransaction tx = QTransaction.transaction;
+
+    return queryFactory
+        .select(constructor(
+            TransactionHistoryView.class,
+            tx.id,
+            tx.transactionType,
+            tx.status,
+            tx.amount,
+            tx.fee,
+            tx.fromAccountId,
+            tx.toAccountId,
+            tx.occurredAt
+        ))
+        .from(tx)
+        .where(
+            tx.fromAccountId.eq(accountId)
+                .or(tx.toAccountId.eq(accountId))
+        )
+        .orderBy(tx.occurredAt.desc(), tx.id.desc())
+        .offset(offset)
+        .limit(limit)
+        .fetch();
   }
 }
